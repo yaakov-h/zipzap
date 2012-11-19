@@ -13,11 +13,13 @@ The zip file is an ideal container for compound Objective-C documents. Zip files
 
   s.author       = 'Pixelglow Software', 
   s.source       = { :git => "https://github.com/yaakov-h/zipzap.git", :tag => "3.1.0" }
+  s.license      = 'BSD'
 
-  s.platform     = :ios, '5.1'
+  s.platform     = :ios, '6.0'
   s.source_files = 'Classes', 'zipzap/**/*.{h,m,mm}'
   s.public_header_files = 'zipzap/**/*.h'
   s.frameworks   = 'Foundation'
   s.libraries    = 'c++', 'z'
   s.requires_arc = true
+  s.xcconfig     = { 'OTHER_CPLUSPLUSFLAGS' => '-std=gnu++11 -stdlib=libc++' }
 end
