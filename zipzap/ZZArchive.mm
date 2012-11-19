@@ -51,6 +51,21 @@
 	return self;
 }
 
+- (id) initWithData:(NSData *)data
+           encoding:(NSStringEncoding)encoding
+{
+    if ((self = [super init]))
+    {
+        _URL = nil;
+        _encoding = encoding;
+        _entries = [NSMutableArray array];
+        _contents = [data copy];
+        
+        [self reloadInternal];
+    }
+    return self;
+}
+
 
 - (void)reload
 {
@@ -59,7 +74,12 @@
 	_contents = [NSData dataWithContentsOfURL:_URL
 									  options:NSDataReadingMappedAlways
 										error:nil];
-	
+    
+    [self reloadInternal];
+}
+
+- (void) reloadInternal
+{	
 	if (_contents)
 	{
 		const uint8_t* beginContent = (const uint8_t*)_contents.bytes;
